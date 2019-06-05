@@ -72,9 +72,25 @@ function List() {
   return (
     <Consumer>
       {
-        ({ list }) =>
-          <>
-            <div>FC组件</div>
+        ({ list, setList }) =>
+          <div className="App-header">
+            <a
+              className="App-link"
+              href="javascript: void 0"
+              onClick={() => {
+                setList([
+                  { id: 1, value: Math.random() },
+                  { id: 2, value: Math.random() },
+                  { id: 3, value: Math.random() }
+                ]);
+
+                alert('更新成功')
+              }}
+            >
+              更新List
+            </a>
+
+            <h2>FC组件</h2>
             {
               list.length ?
                 list.map(item => <FCItem key={item.id} defaultValue={item.value}/>)
@@ -82,14 +98,18 @@ function List() {
                 <div>暂无数据</div>
             }
 
-            <div>Class组件</div>
+            <br/>
+            <br/>
+            <br/>
+
+            <h2>Class组件</h2>
             {
               list.length ?
                 list.map(item => <ClassItem key={item.id} defaultValue={item.value}/>)
                 :
                 <div>暂无数据</div>
             }
-          </>
+          </div>
       }
     </Consumer>
   );
